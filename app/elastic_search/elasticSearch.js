@@ -17,7 +17,7 @@ function readFile(filePath, done) {
 
     stream.on('data', function(data) {
       // Parse data
-      out.push(Baby.parse(data.toString(),{header:true}));
+      out.push(Baby.parse(data.toString(), { header: true }));
     });
 
     stream.on('end', function(){
@@ -29,21 +29,26 @@ function readFile(filePath, done) {
     });
 }
 
+function uploadToSearch(){
+  var jsonData = require('../data/data.json')
+  for(var i = 0; i < jsonData.length; i++){
+    client.create({
+      index: 'projectdata',
+      type: 'data',
+      body: jsonData[i]
+    }, function(err, response){
+      if(err){ return console.log(err) }
+      console.log(response)  
+    });
+  } 
+}
+
 readFile('app/data/data.csv', function(err, data){
-  fs.writeFile('app/data/data.json', JSON.stringify(data[0].data, null, 1), function(err){
+  writeReadyData = JSON.stringify(data[0].data)
+  fs.writeFile('app/data/data.json', writeReadyData, null, 1, function(err){
     if(err) { return console.log(err) }
-    var jsonData = require('../data/data.json')
-    for(var i = 0; i < jsonData.length; i++){
-      client.create({
-        index: 'projectdata',
-        type: 'data',
-        body: jsonData[i]
-      }, function(err, response){
-        if(err){ return console.log(err) }
-        console.log(response)  
-      });
-    }  
-  })
+    uploadToSearch(); 
+  });
 });
 
 
