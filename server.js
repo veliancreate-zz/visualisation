@@ -27,8 +27,8 @@ require('./app/elastic_search/elasticSearch')
 
 // view engine setup
 app.set('views', path.join(__dirname, './app/views'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.engine('html', require('jade').renderFile);
+app.set('view engine', 'jade');
 
 //general
 app.use(favicon(__dirname + '/app/public/images/favicon.ico'));
