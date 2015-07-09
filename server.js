@@ -15,14 +15,15 @@ var flash = require('connect-flash');
 var expressValidator = require('express-validator');
 
 //db
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+// var mongo = require('mongodb');
+// var mongoose = require('mongoose');
+// var configDB = require('./config/database.js');
+// mongoose.connect(configDB.url);
 
 //routes variables
 var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
+require('./app/elastic_search/elasticSearch')
 
 // view engine setup
 app.set('views', path.join(__dirname, './app/views'));
