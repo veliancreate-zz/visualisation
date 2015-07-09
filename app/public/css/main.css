@@ -54,3 +54,6 @@ body,html{
 table{
 	margin: 0 auto;
 }
+nav a{
+	padding: 20px;
+}

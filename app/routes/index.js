@@ -11,8 +11,8 @@ router.get('/table', function(req, res, next) {
   res.render('table', { title: 'D3', data: data });
 });
 
-router.get('/charts', function(req, res, next){
-  res.render('charts', {title: 'D3'})
+router.get('/donuts', function(req, res, next){
+  res.render('donuts', {title: 'D3'})
 });
 
 router.get('/d3', function(req, res, next) {
